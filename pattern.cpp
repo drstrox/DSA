@@ -398,6 +398,7 @@ void print20(int n)
         cout << endl;
     }
 }
+
 int main()
 {
     int t;
