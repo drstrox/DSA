@@ -91,6 +91,7 @@ bool checkArmstrong(int n)
     else
         return false;
 }
+
 int sumOfDivisors(int n)
 {
     int sum = 0;
