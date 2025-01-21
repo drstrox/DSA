@@ -61,20 +61,21 @@ bool check(vector<int> &nums)
 // removing duplicates from {sorted array} (brute force approach)
 int removeDuplicates(vector<int> &nums)
 {
-    set <int> st;
+    set<int> st;
     for (int j = 0; j < nums.size(); j++)
     {
-       st.insert(nums[j]);
+        st.insert(nums[j]);
     }
 
-    int value=0;
-    for(auto i:st){
+    int value = 0;
+    for (auto i : st)
+    {
         nums[value] = i;
         value++;
     }
     return value;
 }
-//removing duplicates from {sorted array} (optimized approach)
+// removing duplicates from {sorted array}  (optimized approach)
 int removeDuplicates(vector<int> &nums)
 {
     int i = 0;
@@ -88,7 +89,56 @@ int removeDuplicates(vector<int> &nums)
     }
     return i + 1;
 }
-// left rotate an array by one place
+// removing duplicates from {sorted array}  (optimized approach) (unique element appears at most twice)
+int removeDuplicates(vector<int> &nums)
+{
+    if (nums.size() <= 2)
+        return nums.size();
+
+    int i = 1;
+    int count = 1;
+
+    for (int j = 1; j < nums.size(); j++)
+    {
+        if (nums[j] == nums[j - 1])
+        {
+            count++;
+        }
+        else
+        {
+            count = 1;
+        }
+
+        if (count <= 2)
+        {
+            nums[i] = nums[j];
+            i++;
+        }
+    }
+    return i;
+}
+// left rotate an array by one place (brute force approach) (TIME:O(n) SPACE:O(n) as an extra array is created to solve the prob.)
+vector<int> rotateArray(vector<int> &arr, int n)
+{
+    vector <int> temp[n]={0};
+    for (int i = 1; i < n; i++)
+    {
+        temp[i - 1] = arr[i];
+    }
+    temp[n - 1] = arr[0];
+    return temp;
+}
+// left rotate an array by one place (optimal approach) (in place algorithm) (TIME:O(n) SPACE:O(1) as no extra array is created to solve the prob.)
+vector<int> rotateArray(vector<int> &arr, int n)
+{
+    int temp = arr[0];
+    for (int i = 1; i < n; i++)
+    {
+        arr[i - 1] = arr[i];
+    }
+    arr[n - 1] = temp;
+    return arr;
+}
 
 
 
