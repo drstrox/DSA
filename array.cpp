@@ -2,6 +2,7 @@
 using namespace std;
 
 // easy
+
 // largest element in an array
 int largest(vector<int> &arr)
 {
@@ -120,7 +121,7 @@ int removeDuplicates(vector<int> &nums)
 // left rotate an array by one place (brute force approach) (TIME:O(n) SPACE:O(n) as an extra array is created to solve the prob.)
 vector<int> rotateArray(vector<int> &arr, int n)
 {
-    vector <int> temp[n]={0};
+    vector<int> temp[n];
     for (int i = 1; i < n; i++)
     {
         temp[i - 1] = arr[i];
@@ -139,8 +140,30 @@ vector<int> rotateArray(vector<int> &arr, int n)
     arr[n - 1] = temp;
     return arr;
 }
+// left rotate an array by k places (brute force approach) (TIME:O(n+k) SPACE:O(k) as an extra array of k elements is created)
+vector<int> rotateArray(vector<int> arr, int k)
+{
+    int n = arr.size();
+    k = k % n;
+    
+    vector<int> temp(k);
+    for (int i = 0; i < k; i++)
+    {
+        temp[i] = arr[i];
+    }
 
+    for (int j = k; j < n; j++)
+    {
+        arr[j - k] = arr[j];
+    }
 
+    for (int j = n - k; j < n; j++)
+    {
+        arr[j] = temp[j - (n - k)];
+    }
+
+    return arr;
+}
 
 int main()
 {
