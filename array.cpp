@@ -58,7 +58,23 @@ bool check(vector<int> &nums)
 
     return true;
 }
-// removing duplicates from sorted array
+// removing duplicates from {sorted array} (brute force approach)
+int removeDuplicates(vector<int> &nums)
+{
+    set <int> st;
+    for (int j = 0; j < nums.size(); j++)
+    {
+       st.insert(nums[j]);
+    }
+
+    int value=0;
+    for(auto i:st){
+        nums[value] = i;
+        value++;
+    }
+    return value;
+}
+//removing duplicates from {sorted array} (optimized approach)
 int removeDuplicates(vector<int> &nums)
 {
     int i = 0;
