@@ -172,9 +172,9 @@ void rotate(vector<int> arr, int d)
         d = d % arr.size();
     }
 
-    reverse(arr, arr+d);
-    reverse(arr+ d, arr+n);
-    reverse(arr, arr+n);
+    reverse(arr, arr + d);
+    reverse(arr + d, arr + n);
+    reverse(arr, arr + n);
 }
 // right rotate an array by k places (brute force approach but optimized for time complexity) (IME:O(n+k) SPACE:O(k) as an extra array of k elements is created)
 vector<int> rotateRight(vector<int> &arr, int k)
@@ -203,13 +203,76 @@ vector<int> rotateRight(vector<int> &arr, int k)
 
     return nums;
 }
-// moving zeroes to the end
+// moving zeroes to the end (brute force)  (TIME:O(2n) SPACE:O(n)))
+vector<int> moveZeros(int n, vector<int> a)
+{
+    vector<int> temp;
+    for (int i = 0; i < n; i++)
+    {
+        if (a[i] != 0)
+        {
+            temp.push_back(a[i]);
+        }
+    }
+
+    int nz = temp.size();
+    for (int i = 0; i < nz; i++)
+    {
+        a[i] = temp[i];
+    }
+
+    for (int i = nz; i < n; i++)
+    {
+        a[i] = 0;
+    }
+
+    return a;
+}
+// moving zeroes to end (optimal solution) (TIME:O(n) SPACE:O(1))
+void moveZeroes(vector<int> &nums)
+{
+    int j = -1;
+    int n = nums.size();
+    for (int i = 0; i < n; i++)
+    {
+        if (nums[i] == 0)
+        {
+            j = i;
+            break;
+        }
+    }
+
+    if (j == -1)
+    {
+        return;
+    }
+
+    for (int i = j + 1; i < n; i++)
+    {
+        if (nums[i] != 0)
+        {
+            swap(nums[i], nums[j]);
+            j++;
+        }
+    }
+}
+    OR 
+void moveZeroes(vector<int>& nums) {
+    int j = 0;  // Start from the beginning of the array
+    int n = nums.size();
+
+    // Move non-zero elements to the front
+    for (int i = 0; i < n; i++) {
+        if (nums[i] != 0) {
+            swap(nums[i], nums[j]);
+            j++;
+        }
+    }
+}
+//union of two arrays (brute force)
 
 
-
-
-
-
+//union of two arrays (brute force)
 
 
 
