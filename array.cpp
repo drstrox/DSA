@@ -164,14 +164,48 @@ vector<int> rotateArray(vector<int> arr, int k)
 
     return arr;
 }
+// left rotate an array by k places (optimal approach) (TIME:O(2n) SPACE:O(1) as an extra array of k elements is created)
+void rotate(vector<int> arr, int d)
+{
+    if (d > arr.size())
+    {
+        d = d % arr.size();
+    }
 
+    reverse(arr, arr+d);
+    reverse(arr+ d, arr+n);
+    reverse(arr, arr+n);
+}
 
+// right rotate an array by k places (brute force approach) (IME:O(n+k) SPACE:O(k) as an extra array of k elements is created)
+vector<int> rotateRight(vector<int> &arr, int k)
+{
+    int n = nums.size();
+    k = k % n;
+    vector<int> temp(k);
 
+    // storing in temp
+    for (int i = n - k; i < n; i++)
+    {
+        temp[i - (n - k)] = nums[i];
+    }
 
+    // shifting elements to right
+    for (int i = n - k - 1; i >= 0; i--)
+    {
+        nums[i + k] = nums[i];
+    }
 
+    // storing back from temp
+    for (int i = 0; i < k; i++)
+    {
+        nums[i] = temp[i];
+    }
 
+    return nums;
+}
 
-
+// moving zeroes to the end
 
 int main()
 {
