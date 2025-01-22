@@ -145,7 +145,7 @@ vector<int> rotateArray(vector<int> arr, int k)
 {
     int n = arr.size();
     k = k % n;
-    
+
     vector<int> temp(k);
     for (int i = 0; i < k; i++)
     {
@@ -164,6 +164,14 @@ vector<int> rotateArray(vector<int> arr, int k)
 
     return arr;
 }
+
+
+
+
+
+
+
+
 
 int main()
 {
