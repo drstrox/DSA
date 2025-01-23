@@ -274,8 +274,7 @@ OR void moveZeroes(vector<int> &nums)
 // union of two arrays (brute force)
 vector<int> findUnion(vector<int> &a, vector<int> &b)
 {
-    // Your code here
-    // return vector with correct order of elements
+    
 }
 
 // union of two arrays (brute force)
