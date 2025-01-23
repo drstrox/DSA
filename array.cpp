@@ -256,25 +256,29 @@ void moveZeroes(vector<int> &nums)
         }
     }
 }
-    OR 
-void moveZeroes(vector<int>& nums) {
-    int j = 0;  // Start from the beginning of the array
+OR void moveZeroes(vector<int> &nums)
+{
+    int j = 0; // Start from the beginning of the array
     int n = nums.size();
 
     // Move non-zero elements to the front
-    for (int i = 0; i < n; i++) {
-        if (nums[i] != 0) {
+    for (int i = 0; i < n; i++)
+    {
+        if (nums[i] != 0)
+        {
             swap(nums[i], nums[j]);
             j++;
         }
     }
 }
-//union of two arrays (brute force)
+// union of two arrays (brute force)
+vector<int> findUnion(vector<int> &a, vector<int> &b)
+{
+    // Your code here
+    // return vector with correct order of elements
+}
 
-
-//union of two arrays (brute force)
-
-
+// union of two arrays (brute force)
 
 int main()
 {
