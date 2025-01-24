@@ -271,23 +271,84 @@ OR void moveZeroes(vector<int> &nums)
         }
     }
 }
-// union of two arrays (brute force)
+// union of two arrays (brute force) TIME=o((a.size()+b.size()) * (log st.size()+1))
 vector<int> findUnion(vector<int> &a, vector<int> &b)
 {
     set<int> st;
-    for(int i=0;i<a.size();i++){
+    for (int i = 0; i < a.size(); i++)
+    {
         st.insert(a[i]);
     }
-    for(int i=0;i<b.size();i++){
+    for (int i = 0; i < b.size(); i++)
+    {
         st.insert(b[i]);
     }
     vector<int> union_vec;
-    for(auto i:st){
+    for (auto i : st)
+    {
         union_vec.push_back(i);
     }
 }
+// union of two arrays (optimal force)
+vector<int> findUnion(vector<int> &a, vector<int> &b)
+{
 
-// union of two arrays (brute force)
+    int n1 = a.size();
+    int n2 = b.size();
+    int i = 0;
+    int j = 0;
+    vector<int> union_vec;
+
+    while (i < n1 && j < n2)
+    {
+        if (a[i] <= b[j])
+        {
+            if (union_vec.size() == 0 || union_vec.back() != a[i])
+            {
+                union_vec.push_back(a[i]);
+            }
+            i++;
+        }
+        else
+        {
+            if (union_vec.size() == 0 || union_vec.back() != b[j])
+            {
+                union_vec.push_back(b[j]);
+            }
+            j++;
+        }
+    }
+
+    while (i < n1)
+    {
+        if (union_vec.size() == 0 || union_vec.back() != a[i])
+        {
+            union_vec.push_back(a[i]);
+        }
+        i++;
+    }
+
+    while (j < n2)
+    {
+        if (union_vec.size() == 0 || union_vec.back() != b[j])
+        {
+            union_vec.push_back(b[j]);
+        }
+        j++;
+    }
+
+    return union_vec;
+}
+
+
+
+
+
+
+
+
+
+
 
 int main()
 {
