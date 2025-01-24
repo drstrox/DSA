@@ -366,7 +366,24 @@ vector<int> findArrayIntersection(vector<int> &arr1, int n, vector<int> &arr2, i
     return ans;
 }
 // intersection of two arrays (optimal)
-
+vector<int> findArrayIntersection(vector<int> &A, int n, vector<int> &B, int m){
+    vector<int> ans;
+    int i = 0, j = 0;
+    while(i < n && j < m){
+        if(A[i] == B[j]){
+            ans.push_back(A[i]);
+            i++;
+            j++;
+        }
+        else if(A[i] < B[j]){
+            i++;
+        }
+        else{
+            j++;
+        }
+    }
+    return ans;
+}
 
 
 
