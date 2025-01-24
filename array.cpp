@@ -274,7 +274,17 @@ OR void moveZeroes(vector<int> &nums)
 // union of two arrays (brute force)
 vector<int> findUnion(vector<int> &a, vector<int> &b)
 {
-    
+    set<int> st;
+    for(int i=0;i<a.size();i++){
+        st.insert(a[i]);
+    }
+    for(int i=0;i<b.size();i++){
+        st.insert(b[i]);
+    }
+    vector<int> union_vec;
+    for(auto i:st){
+        union_vec.push_back(i);
+    }
 }
 
 // union of two arrays (brute force)
