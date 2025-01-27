@@ -588,7 +588,7 @@ int singleNumber(vector<int> &nums)
     }
     return xor;
 }
-
+// Longest subarray with given sum K(positives)
 
 
 
