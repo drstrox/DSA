@@ -470,12 +470,73 @@ int missingNumber(vector<int> &nums)
     }
     return -1;
 }
+// finding missing element in array (optimal) time=O(n)  //sum method  // not better as n can be huge then long long datatype must be required which is not feasible
+int missingNumber(vector<int> &nums)
+{
+    int n = nums.size();
+    int sum = n * (n + 1) / 2;
+    int sum2 = 0;
 
+    for (int i = 0; i < n; i++)
+    {
+        sum2 = sum2 + nums[i];
+    }
 
+    return (sum - sum2);
+}
+// finding missing element in array (optimal) time=O(n)  //XOR method
+int missingNumber(vector<int> &nums)
+{
+    int n = nums.size();
+    int xor1 = 0;
+    int xor2 = 0;
 
+    for (int i = 0; i < n; i++)
+    {
+        xor2 = xor2 ^ nums[i];
+        xor1 = xor1 ^ (i + 1);
+    }
 
-
-
+    return xor1 ^ xor2;
+}
+// maximum consecutive ones (optimal)
+int findMaxConsecutiveOnes(vector<int> &nums)
+{
+    int n = nums.size();
+    int maxcons = 0;
+    int count = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (nums[i] == 1)
+        {
+            count++;
+            maxcons = max(maxcons, count);
+        }
+        else
+        {
+            count = 0;
+        }
+    }
+    return maxcons;
+}
+// Find the number that appears once, and other numbers twice. (brute force)
+int singleNumber(vector<int> &nums)
+{
+    int n = nums.size();
+    for(int i=0;i<n;i++){
+        int count=0;
+        for(int j=0;j<n;j++){
+            if(nums[i]==nums[j]){
+                count++;
+            }
+        }
+        if(count==1){
+            return nums[i];
+        }
+    }
+    return -1;
+}
+// Find the number that appears once, and other numbers twice. (optimal)
 
 
 
