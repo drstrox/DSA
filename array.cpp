@@ -425,7 +425,7 @@ vector<int> intersection(vector<int> &A, vector<int> &B)
 
     return ans;
 }
-// finding missing element in array (brute force)
+// finding missing element in array (brute force) time=O(n^2)
 int missingNumber(vector<int> &nums)
 {
     int n = nums.size();
@@ -448,8 +448,26 @@ int missingNumber(vector<int> &nums)
             return i;
         }
     }
+    return -1;
+}
+// finding missing element in array (better approach) time=O(2n)
+int missingNumber(vector<int> &nums)
+{
+    int n = nums.size();
+    vector<int> hash(n + 1, 0);
 
-    // Default return statement (although this should not be reached)
+    for (int i = 0; i < n; i++)
+    {
+        hash[nums[i]]++;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        if (hash[i] == 0)
+        {
+            return i;
+        }
+    }
     return -1;
 }
 
