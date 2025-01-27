@@ -536,7 +536,58 @@ int singleNumber(vector<int> &nums)
     }
     return -1;
 }
+// Find the number that appears once, and other numbers twice. (better) //hashing used
+int singleNumber(vector<int> &nums)
+{
+    int n = nums.size();
+    int maxi=nums[0];
+    for (int i = 0; i < n; i++)
+    {
+        maxi=max(maxi,nums[i]);
+    }
+
+    vector<int> hash=(maxi+1,0);
+    for(int i=0;i<n;i++){
+        hash[nums[i]]++;
+    }
+
+    for(int i=0;i<maxi;i++){
+        if(hash[i]==1){
+            return i;
+        }
+    }
+    return -1;
+}
+// Find the number that appears once, and other numbers twice. (better) //mapping used
+int singleNumber(vector<int> &nums)
+{
+    int n = nums.size();
+    map<long long, int> mp;
+    for (int i = 0; i < n; i++)
+    {
+        mp[nums[i]]++;
+    }
+
+    for (auto i : mp)
+    {
+        if (i.second == 1)
+        {
+            return i.first;
+        }
+    }
+    return -1;
+}
 // Find the number that appears once, and other numbers twice. (optimal)
+int singleNumber(vector<int> &nums)
+{
+    int n = nums.size();
+    int xor = 0;
+    for (int i = 0; i < n; i++)
+    {
+        xor = xor ^ nums[i];
+    }
+    return xor;
+}
 
 
 
