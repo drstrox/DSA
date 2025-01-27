@@ -471,6 +471,16 @@ int missingNumber(vector<int> &nums)
     return -1;
 }
 
+
+
+
+
+
+
+
+
+
+
 int main()
 {
     int t;
