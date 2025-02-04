@@ -590,17 +590,3 @@ int singleNumber(vector<int> &nums)
 }
 // Longest subarray with given sum K(positives)
 
-
-
-
-int main()
-{
-    int t;
-    cin >> t;
-    for (int i = 0; i < t; i++)
-    {
-        int n;
-        cin >> n;
-        cout << function(n);
-    }
-}

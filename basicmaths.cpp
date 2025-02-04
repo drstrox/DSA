@@ -182,14 +182,3 @@ vector<int> lcmAndGcd(int a, int b) {
         return lg;
     }
 
-int main()
-{
-    int t;
-    cin >> t;
-    for (int i = 0; i < t; i++)
-    {
-        int n;
-        cin >> n;
-        cout << function(n);
-    }
-}

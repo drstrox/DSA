@@ -68,14 +68,3 @@ void merge(vector<int> &arr, int low, int mid, int high)
     }
 }
 
-int main()
-{
-    int t;
-    cin >> t;
-    for (int i = 0; i < t; i++)
-    {
-        int n;
-        cin >> n;
-        cout << function(n);
-    }
-}
