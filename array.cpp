@@ -256,6 +256,7 @@ void moveZeroes(vector<int> &nums)
         }
     }
 }
+
 OR void moveZeroes(vector<int> &nums)
 {
     int j = 0; // Start from the beginning of the array
@@ -292,7 +293,6 @@ vector<int> findUnion(vector<int> &a, vector<int> &b)
 // union of two arrays (optimal force)
 vector<int> findUnion(vector<int> &a, vector<int> &b)
 {
-
     int n1 = a.size();
     int n2 = b.size();
     int i = 0;
@@ -523,14 +523,19 @@ int findMaxConsecutiveOnes(vector<int> &nums)
 int singleNumber(vector<int> &nums)
 {
     int n = nums.size();
-    for(int i=0;i<n;i++){
-        int count=0;
-        for(int j=0;j<n;j++){
-            if(nums[i]==nums[j]){
+    for (int i = 0; i < n; i++)
+    {
+        int count = 0;
+
+        for (int j = 0; j < n; j++)
+        {
+            if (nums[i] == nums[j])
+            {
                 count++;
             }
         }
-        if(count==1){
+        if (count == 1)
+        {
             return nums[i];
         }
     }
@@ -540,19 +545,22 @@ int singleNumber(vector<int> &nums)
 int singleNumber(vector<int> &nums)
 {
     int n = nums.size();
-    int maxi=nums[0];
+    int maxi = nums[0];
     for (int i = 0; i < n; i++)
     {
-        maxi=max(maxi,nums[i]);
+        maxi = max(maxi, nums[i]);
     }
 
-    vector<int> hash=(maxi+1,0);
-    for(int i=0;i<n;i++){
+    vector<int> hash = (maxi + 1, 0);
+    for (int i = 0; i < n; i++)
+    {
         hash[nums[i]]++;
     }
 
-    for(int i=0;i<maxi;i++){
-        if(hash[i]==1){
+    for (int i = 0; i < maxi; i++)
+    {
+        if (hash[i] == 1)
+        {
             return i;
         }
     }
@@ -588,5 +596,74 @@ int singleNumber(vector<int> &nums)
     }
     return xor;
 }
-// Longest subarray with given sum K(positives)
+// Longest subarray with given sum K(positives) (Worst Brute force) 0(n^3)
+int longestSubarray(vector<int> &arr, int k)
+{
+    int n = arr.size();
+    int length = 0;
 
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i; j < n; j++)
+        {
+            int sum = 0;
+            for (int k = i; k <= j; k++)
+            {
+                sum = sum + arr[k];
+            }
+            if (sum == k)
+            {
+                length = max(length, j - i + 1);
+            }
+        }
+    }
+
+    return length;
+}
+// Longest subarray with given sum K(positives) (Better Brute force) 0(n^2)
+int longestSubarray(vector<int> &arr, int k)
+{
+    int n = arr.size();
+    int length = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        int sum = 0;
+        for (int j = i; j < n; j++)
+        {
+            sum = sum + arr[j];
+            if (sum == k)
+            {
+                length = max(length, j - i + 1);
+            }
+        }
+    }
+
+    return length;
+}
+// Longest subarray with given sum K(positives) (better) hash map used
+int longestSubarray(vector<int> &arr, int k)
+{
+    int n = arr.size();
+    int length = 0;
+    int sum = 0;
+    map<int, int> mp;
+    for (int i = 0; i < n; i++)
+    {
+        sum = sum + arr[i];
+        if (sum == k)
+        {
+            length = i + 1;
+        }
+        if (mp.find(sum - k) != mp.end())
+        {
+            length = max(length, i - mp[sum - k]);
+        }
+        if (mp.find(sum) == mp.end())
+        {
+            mp[sum] = i;
+        }
+    }
+
+    return length;
+}
