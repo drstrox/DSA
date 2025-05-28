@@ -398,4 +398,23 @@ void print20(int n)
         cout << endl;
     }
 }
+void print21(int n){
+    for(int i=1; i<=n; i++){
+
+        cout<<"*";
+        if((i==1) || (i==n)){
+            for(int j=0; j<n-2; j++){
+                cout<<"*";
+            }
+        }
+        else{
+            for(int j=0; j<n-2; j++){
+                cout<<" ";
+            }
+        }
+        cout<<"*";
+        cout<<endl;
+    }
+}
+
 
