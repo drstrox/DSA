@@ -1,35 +1,31 @@
-reclass Solution{
+class Solution{
 public:
-    bool detect(int src, vector<int> adj[], int vis[]) {
-      vis[src] = 1; 
-      queue<pair<int,int>> q; 
-      q.push({src, -1}); 
-
-      while(!q.empty()) {
-          int node = q.front().first; 
-          int parent = q.front().second; 
-          q.pop(); 
-          
-          for(auto adjacentNode: adj[node]) {
-              if(!vis[adjacentNode]) {
-                  vis[adjacentNode] = 1; 
-                  q.push({adjacentNode, node}); 
-              }
-              else if(parent != adjacentNode) {
-                  return true; 
-              }
-          }
-      }
-      return false; 
-  }
-  
-    bool isCycle(int V, vector<int> adj[]) {
-        int vis[V] = {0};
-        for(int i = 0;i<V;i++) {
-            if(!vis[i]) {
-                if(bfs(i, adj, vis)) return true; 
+    bool isCyclic(int N, vector<int> adj[]) {
+        vector<int> indegree(V, 0);
+        for (int u = 0; u < V; u++) {
+            for (int v : adj[u]) {
+                indegree[v]++;
             }
         }
-        return false;
+
+        queue<int> q;
+        for (int i = 0; i < V; i++) {
+            if (indegree[i] == 0) q.push(i);
+        }
+
+        int count = 0;
+        while (!q.empty()) {
+            int node = q.front();
+            q.pop();
+            count++;
+
+            for (int neighbor : adj[node]) {
+                indegree[neighbor]--;
+                if (indegree[neighbor] == 0) {
+                    q.push(neighbor);
+                }
+            }
+        }
+        return count != V;    
     }
 };
